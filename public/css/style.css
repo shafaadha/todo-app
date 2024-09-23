@@ -1,0 +1,418 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --white-color: #fff;
+  --blue-color: #4070f4; 
+  --grey-color: #707070;
+  --grey-color-light: #fcfafa;
+}
+body {
+  background-color: #fff; 
+  transition: all 0.5
+  
+}
+
+
+.logo_item {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--blue-color);
+}
+.navbar img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.search_bar {
+  height: 47px;
+  max-width: 430px;
+  width: 100%;
+  padding-top: 10px;
+}
+.search_bar input {
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  font-size: 18px;
+  outline: none;
+  background-color: var(--white-color);
+  color: var(--grey-color);
+  border: 1px solid var(--grey-color);
+  padding: 10px 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 70%;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.input-title{
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.input-title:focus {
+  border-color: #008df9;
+  outline: none;
+}
+
+.input-task {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Gaya saat input task difokuskan */
+.input-task:focus {
+  border-color: #008df9;
+  outline: none;
+}
+
+button{
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.todo-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+/* Sticky note style */
+.sticky-note {
+  width: 220px;
+  background-color: #ebdbdb;
+  min-height: 150px;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bx-trash {
+  background: none; /* Removes background color */
+  border: none; /* Removes border */
+  cursor: pointer; /* Changes cursor to pointer */
+  font-size: 18px; /* Adjust icon size */
+  color: black; /* Icon color */
+  padding: 0; /* Removes padding */
+}
+
+.bx-trash:hover {
+  color: red; /* Changes color on hover */
+}
+
+
+.stickynote_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 6px;
+}
+.sticky-note .todo-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.sticky-note .todo-category {
+  font-size: 12px;
+  color: #555;
+}
+
+.sticky-note .todo-actions {
+  display: flex;
+  justify-content:space-between;
+  margin-top: 10px;
+}
+
+.sticky-note .action-btn {
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.sticky-note .action-btn.delete {
+  background-color: #f44336;
+}
+
+.sticky-note .action-btn.edit{
+  background-color: orange;
+}
+
+.sticky-note .action-btn.complete {
+  background-color: #4CAF50;
+}
+
+.sticky-note.completed {
+  background-color: #d3ffd3;
+  text-decoration: line-through;
+}
+
+.sticky-note .action-btn:hover {
+  opacity: 0.8;
+}
+
+
+
+
+
+.navbar_content {
+  display: flex;
+  align-items: center;
+  column-gap: 25px;
+}
+.navbar_content i {
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--grey-color);
+}
+
+.header{
+  margin-left: 140px;
+  padding-bottom: 10px;
+}
+.layout{
+  display: flex;
+}
+
+.input-container {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+
+.content{
+  /* background-color: white; */
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 120px;
+  transition: margin-left 0.5s ease;
+
+}
+
+/* sidebar */
+.sidebar {
+  background-color: var(--grey-color-light);
+  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 20px 20px;
+  z-index: 100;
+  transition: all 0.5s ease;
+}
+.sidebar.close {
+  padding: 60px 0;
+  width: 80px;
+}
+
+.sidebar.close + .content {
+  margin-left: 80px; /* Sesuaikan dengan lebar sidebar ketika ditutup */
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+.menu_content {
+  position: relative;
+}
+.menu_title {
+  margin: 15px 0;
+  padding: 0 20px;
+  font-size: 18px;
+}
+.sidebar.close .menu_title {
+  padding: 6px 30px;
+}
+.menu_title::before {
+  color: var(--grey-color);
+  white-space: nowrap;
+}
+.menu_task::before {
+  content: "Task";
+}
+.menu_editor::before {
+  content: "Editor";
+}
+.menu_setting::before {
+  content: "Setting";
+}
+.sidebar.close .menu_title::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 18px;
+  border-radius: 12px;
+  background: var(--grey-color-light);
+}
+.menu_items {
+  padding: 0;
+  list-style: none;
+}
+.navlink_icon {
+  position: relative;
+  font-size: 22px;
+  min-width: 50px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 6px;
+}
+.navlink_icon::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: calc(100% + 100px);
+  left: -20px;
+}
+.navlink_icon:hover {
+  background: var(--blue-color);
+}
+.sidebar .nav_link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--grey-color);
+  white-space: nowrap;
+}
+.sidebar.close .navlink {
+  display: none;
+}
+.nav_link:hover {
+  color: var(--white-color);
+  background: var(--blue-color);
+}
+.sidebar.close .nav_link:hover {
+  background: var(--white-color);
+}
+.submenu_item {
+  cursor: pointer;
+}
+.submenu {
+  display: none;
+}
+.submenu_item .arrow-left {
+  position: absolute;
+  right: 10px;
+  display: inline-block;
+  margin-right: auto;
+}
+.sidebar.close .submenu {
+  display: none;
+}
+.show_submenu ~ .submenu {
+  display: block;
+}
+.show_submenu .arrow-left {
+  transform: rotate(90deg);
+}
+.submenu .sublink {
+  padding: 15px 15px 15px 52px;
+}
+.bottom_content {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  width: 260px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.bottom {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 0;
+  justify-content: space-around;
+  padding: 18px 0;
+  text-align: center;
+  width: 100%;
+  color: var(--grey-color);
+  border-top: 1px solid var(--grey-color-light);
+  background-color: var(--white-color);
+}
+.bottom i {
+  font-size: 20px;
+}
+.bottom span {
+  font-size: 18px;
+}
+.sidebar.close .bottom_content {
+  width: 50px;
+  left: 15px;
+}
+.sidebar.close .bottom span {
+  display: none;
+}
+.sidebar.hoverable .collapse_sidebar {
+  display: none;
+}
+#sidebarOpen {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  #sidebarOpen {
+    font-size: 25px;
+    display: block;
+    margin-right: 10px;
+    cursor: pointer;
+    color: var(--grey-color);
+  }
+  .sidebar.close {
+    left: -100%;
+  }
+  .search_bar {
+    display: none;
+
+  }
+  .sidebar.close .bottom_content {
+    left: -100%;
+  }
+}

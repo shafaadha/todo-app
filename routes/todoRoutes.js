@@ -9,10 +9,12 @@ const expressLayouts = require('express-ejs-layouts')
 // Menampilkan halaman utama
 router.get('/', async (req, res) => {
     const category = req.query.category || 'All';
+    const dateTime = new Date();
+    const day = dateTime.getDate();
     try {
       const filter = category === 'All' ? {} : { category: category };
       const todos = await Todo.find(filter);
-      res.render('index', { todos: todos, category: category });
+      res.render('index', { todos: todos, category: category, date: day });
     } catch (err) {
       console.error(err);  // Tambahkan logging untuk memeriksa error
       res.status(500).send('Error fetching todos');
@@ -25,7 +27,8 @@ router.post('/add', async (req, res) => {
   const todo = new Todo({
     title: req.body.title,
     task: req.body.task,
-    category: req.body.category
+    category: req.body.category,
+    dueDate: req.body.dueDate,
   });
 
   try {

@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>Today 9</h1>
+  <h1>Today <%= date %></h1>
 </div>
 <div class="content">
   <div id="notes-container"></div>
@@ -9,13 +9,21 @@
     <div class="input-container">
       <form action="/add" method="POST">
         <input class="input-title" type="text" name="title" placeholder="Add title" required>
-        <input class="input-task" type="text" name="task" placeholder="Add a new task" required>
-        <select name="category" required>
-          <option value="">Select Category</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Other">Other</option>
-        </select>
+        <div class="task-category-container">
+          <input class="input-task" type="text" name="task" placeholder="Add a new task" required>
+          <div class="select-menu">
+            <div class="select-btn">
+              <select name="category" required>
+                <option value="">Select Category</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      
+        <input class="input-date" type="date" placeholder="Add deadline" name="dueDate" required>
         <button type="submit">Add Task</button>
       </form>
     </div>
@@ -32,15 +40,16 @@
           <%= todo.task %>
         </div>
         <div class="todo-category">
-          <small>Category: <%= todo.category %></small>
+          <!-- <small>Category: <%= todo.category %></small> -->
         </div>
         <div class="todo-actions">
           <% if (!todo.completed) { %>
             <a href="/complete/<%= todo._id %>" class="action-btn complete">Complete</a>
           <% } %>
-          <a href="/edit/<%= todo._id %>" class="action-btn edit">Edit</a>
-          <!-- Form delete with correct method override -->
-          <span class="stickynote_icon">
+          <span class="stickynote_edit">
+            <a href="/edit/<%= todo._id %>" class="bx bx-pencil"></a>
+          </span>
+          <span class="stickynote_delete">
             <form action="/delete/<%= todo._id %>?_method=DELETE" method="POST">
               <button type="submit" class="bx bx-trash" onclick="return confirm('Want to delete?')"></button>
             </form>

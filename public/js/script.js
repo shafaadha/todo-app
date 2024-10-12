@@ -112,3 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
     note.style.backgroundColor = getRandomColor();
   });
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+  const stickyNotes = document.querySelectorAll('.sticky-note');
+
+  stickyNotes.forEach(note=>{
+    const category = note.querySelector('.todo-category').innerText.trim().toLowerCase();
+    if(category === 'work'){
+      note.classList.add('work')
+    } else if(category === 'personal'){
+      note.classList.add('personal')
+    } else{
+      note.classList.add('other');
+    }
+  });
+});

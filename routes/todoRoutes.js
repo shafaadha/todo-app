@@ -11,8 +11,31 @@ router.get('/', async (req, res) => {
     const category = req.query.category || 'All';
     const dateTime = new Date();
     const day = dateTime.getDate();
+    const status = req.query.status || 'All';
+    const search = req.query.search || '';
+    const dueDateFilter = req.query.dueDate || '';
     try {
-      const filter = category === 'All' ? {} : { category: category };
+      //filter category
+      const filter = {};
+      if(category !== 'All') { 
+        filter.category = category;
+      }
+
+      //filter status
+      if(status === 'completed'){
+        filter.completed = true;
+      }else{
+        filter.completed = false;
+      }
+
+      //filter judul atau task
+      if(search){
+        filter.$or = [
+          { title:{$regex: search, $option: 'i'}},
+          { task: {$regex: search, $option: 'i'}}
+        ];
+      }
+
       const todos = await Todo.find(filter);
       res.render('index', { todos: todos, category: category, date: day });
     } catch (err) {

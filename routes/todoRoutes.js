@@ -3,7 +3,38 @@ const router = express.Router();
 const Todo = require('../model/todo');
 const expressLayouts = require('express-ejs-layouts')
 
+const cron = require('node-cron');
+const Pusher = require('pusher')
 
+const pusher = new Pusher({
+  appId: "",
+  key:"",
+  secret:"",
+  cluster: "",
+  useTLS: true
+})
+
+//pengingat otomatis
+cron.schedule('* * * * *', async ()=>{
+  const currentTime = new Date();
+  const reminderTime = new Date(currentTime.getTime() + 10*60000);
+
+  try{
+    const todos = await Todo.find({
+      dueDate: {$lte: reminderTime, $gte: currentTime},
+      completed: false
+    });
+
+    todos.forEach(todo =>{
+      pusher.trigger('todo-channel', 'reminder-event', {
+        message: `Tugas "${todo.title}" akan jatuh tempo dalam 10 menit.`,
+      });
+
+    });
+  }catch(err){
+    console.error('Error fetching todos:', err)
+  }
+})
 
 
 // Menampilkan halaman utama

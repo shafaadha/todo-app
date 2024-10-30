@@ -1,0 +1,25 @@
+<div class="header">
+  </div>
+  <div class="content">
+    <div id="notes-container"></div>
+  
+    <!--Form-->
+    <section class="add-todo">
+      <div class="input-container">
+        <form action="/edit?_method=PUT" method="post" class="d-inline">
+          <input type="hidden" name="todo_id" value="<%= todo._id %>">
+          <div class="mb-3">
+            <label for="title" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="title" name="title" required value="<%= todo.title %>">
+          </div>
+          <div class="mb-3">
+            <label for="task" class="form-label">Task</label>
+            <input type="text" class="form-control" id="task" name="task" required value="<%= todo.task %>">
+          </div>
+          <button type="submit" class="btn btn-primary">Ubah Data Contact</button>
+        </form>
+      </div>
+    </section>
+  
+  </div>
+  

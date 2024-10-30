@@ -119,19 +119,47 @@ router.delete('/delete/:id', async (req, res) => {
 });
 
 //tampilan edit
-router.get('/edit/:title', async (req, res)=>{
-  const todo = await Todo.findOne({title: req.params.title})
-  res.render('edit',{
-    layouts: 'layouts/layouts',
-    todo
-  })
-})
+// GET route to edit a Todo by ID
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id); // Use findById for _id
+    res.render('edit', {
+      layout: 'layouts/layout',
+      title: 'Update note',
+      todo,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error');
+  }
+});
 
-//proses edit
-router.put('/edit/:id', async (req, res) => {
+// PUT route to update a Todo by ID
+router.put('/edit', async (req, res) => {
   try {
     await Todo.updateOne(
-      { _id: req.params.id },
+      { _id: req.body.todo_id }, // Ensure todo_id is used here
+      {
+        $set: {
+          title: req.body.title,
+          task: req.body.task,
+        },
+      }
+    );
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Unable to update todo');
+  }
+});
+
+
+
+//proses edit
+router.put('/edit', async (req, res) => {
+  try {
+    await Todo.updateOne(
+      { _id: req.body.todo_id },
       {
         $set: {
           title: req.body.title,

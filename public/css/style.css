@@ -127,11 +127,12 @@ input {
 
 button{
   padding: 10px 20px;
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  background-color: #9e7c7b;
 }
 
 #notes-container {
@@ -253,6 +254,7 @@ button{
 }
 
 .tags{
+  margin-top: 10px;
   display: flex;
   align-items: center;
 }

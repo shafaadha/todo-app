@@ -1,0 +1,25 @@
+<div class="header">
+
+    
+</div>
+<div class="content">
+    <section class="todo-list" style="position: absolute;">
+        <% todos.forEach(function(todo) { %>
+          <div class="sticky-note <%= todo.completed ? 'completed' : '' %>">
+            <div class="todo-text">
+              <%= todo.title %>
+            </div>
+            <div class="todo-task">
+              <%= todo.task %>
+            </div>
+            <div class="todo-category">
+              <small>Category: <%= todo.category %></small>
+            </div>
+          </div>
+        <% }) %>
+      </section>
+    
+
+
+
+</div>

@@ -21,6 +21,12 @@ const todoSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  priority:{
+    type: String,
+    enum: ['High', 'Medium', 'Low'],
+    default: 'Medium',
+    required: true
+  }
 });
 
 const Todo = mongoose.model('Todo', todoSchema);

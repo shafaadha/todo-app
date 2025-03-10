@@ -26,7 +26,8 @@ const todoSchema = new mongoose.Schema({
     enum: ['High', 'Medium', 'Low'],
     default: 'Medium',
     required: true
-  }
+  },
+  attachments: {type: String}
 });
 
 const Todo = mongoose.model('Todo', todoSchema);

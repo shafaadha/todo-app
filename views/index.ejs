@@ -1,5 +1,6 @@
 <div class="header">
-  <h1>Today <%= date %></h1>
+  <h1>Today <%= date %>
+  </h1>
 </div>
 <div class="content">
   <div id="notes-container">
@@ -31,7 +32,7 @@
                       <option value="High">High</option>
                       <option value="Medium">Medium</option>
                       <option value="Low">Low</option>
-                    </select>                    
+                    </select>
                   </div>
                 </div>
               </div>
@@ -40,34 +41,48 @@
             </form>
           </div>
         </section>
-      <% } %>
-    
-      <!-- Sticky notes -->
-      <section class="todo-list">
-        <% todos.forEach(function(todo) { %>
-          <div class="sticky-note <%= todo.completed ? 'completed' : '' %>">
-            <div class="todo-text"><%= todo.title %></div>
-            <div class="todo-task"><%= todo.task %></div>
-            <div class="todo-category">
-              <small>Category: <%= todo.category %></small>
-            </div>
-            <div class="todo-actions">
-              <% if (!todo.completed) { %>
-                <a href="/complete/<%= todo._id %>" class="action-btn complete">Complete</a>
-              <% } %>
-              <span class="stickynote_edit">
-                <a href="/edit/<%= todo._id %>" class="bx bx-pencil"></a>
-              </span>
-              <span class="stickynote_delete">
-                <form action="/delete/<%= todo._id %>?_method=DELETE" method="POST">
-                  <button type="submit" class="bx bx-trash" onclick="return confirm('Want to delete?')"></button>
-                </form>
-              </span>
-            </div>
-          </div>
-        <% }) %>
-      </section>
-    </div>    
+        <% } %>
+
+          <!-- Sticky notes -->
+          <section class="todo-list">
+            <% todos.forEach(function(todo) { %>
+              <div class="sticky-note <%= todo.completed ? 'completed' : '' %>">
+                <div class="todo-text">
+                  <%= todo.title %>
+                </div>
+                <div class="todo-task">
+                  <%= todo.task %>
+                </div>
+                <div class="todo-category">
+                  <small>Category: <%= todo.category %></small>
+                </div>
+                <div class="todo-actions">
+                  <% if (!todo.completed) { %>
+                    <a href="/complete/<%= todo._id %>" class="action-btn complete">Complete</a>
+                    <% } %>
+                      <% if (todo.attachments) { %>
+
+                        <% } else { %>
+                          <span class="stickynote_edit">
+                            <a href="/upload/<%= todo._id %>" class="bx bx-upload"></a>
+                          </span>
+                          <% } %>
+
+
+                            <span class="stickynote_edit">
+                              <a href="/edit/<%= todo._id %>" class="bx bx-pencil"></a>
+                            </span>
+                            <span class="stickynote_delete">
+                              <form action="/delete/<%= todo._id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="bx bx-trash"
+                                  onclick="return confirm('Want to delete?')"></button>
+                              </form>
+                            </span>
+                </div>
+              </div>
+              <% }) %>
+          </section>
+    </div>
   </div>
 
 </div>
